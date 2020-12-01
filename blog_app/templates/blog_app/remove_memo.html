@@ -1,0 +1,14 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}
+    Memo-Delete
+{% endblock %}
+
+{% block content %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <h3>{{ Memo.title }} - 삭제하기</h3>
+        <button>삭제</button>
+    </form>
+
+{% endblock %}
