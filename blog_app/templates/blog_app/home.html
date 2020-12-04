@@ -4,5 +4,13 @@
 {% endblock %}
 
 {% block content %}
-    
+    <p>영어문장</p>
+    {% for list in eng_scrapelist %}
+        <li>{{ list.en_text }}</li>
+    {% endfor %}
+
+    <p>한글문장</p>
+    {% for list in kor_scrapelist %}
+        <li>{{ list.ko_text }}</li>
+    {% endfor %}
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from .models import Memo
+from .models import Memo, KorTexts, EngTexts
 
 # Create your views here.
 
@@ -8,7 +8,9 @@ def index(req):
     return render(req, 'blog_app/index.html')
 
 def home(req):
-    return render(req, 'blog_app/home.html')
+    kor_scrapelist = KorTexts.objects.all()
+    eng_scrapelist = EngTexts.objects.all()
+    return render(req, 'blog_app/home.html', {'kor_scrapelist':kor_scrapelist, 'eng_scrapelist':eng_scrapelist})
 
 def memo(req):
     memolist = Memo.objects.all()

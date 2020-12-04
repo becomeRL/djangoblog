@@ -9,3 +9,9 @@ class Memo(models.Model):
     def __str__(self):
         return self.title
 
+class KorTexts(models.Model):
+    ko_text = models.CharField(max_length=200)
+
+
+class EngTexts(models.Model):
+    en_text = models.CharField(max_length=200)
