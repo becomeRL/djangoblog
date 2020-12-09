@@ -4,13 +4,22 @@
 {% endblock %}
 
 {% block content %}
-    <p>영어문장</p>
+    <h3> Today's Conversation / 오늘의 회화</h3>
+    <p>Today's Expression</p>
     {% for list in eng_scrapelist %}
         <li>{{ list.en_text }}</li>
     {% endfor %}
 
-    <p>한글문장</p>
+    <p>오늘의 표현</p>
     {% for list in kor_scrapelist %}
         <li>{{ list.ko_text }}</li>
     {% endfor %}
+    <p style="color: darkgray;">출처 : 해커스 오늘의 회화</p>
+    <h3> Today's News / 오늘의 뉴스</h3>
+    <p>HeadLine News</p>
+    {% for list in news_scrapelist %}
+    <li>{{ list.title }}</li>
+    <a href="{{ list.link }}">{{ list.link }}</a>
+    {% endfor %}
+    <p style="color: darkgray;">출처 : 네이버 뉴스</p>
 {% endblock %}

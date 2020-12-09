@@ -12,6 +12,9 @@ class Memo(models.Model):
 class KorTexts(models.Model):
     ko_text = models.CharField(max_length=200)
 
-
 class EngTexts(models.Model):
     en_text = models.CharField(max_length=200)
+
+class NewsData(models.Model):
+    title = models.CharField(max_length=200)
+    link = models.URLField()
