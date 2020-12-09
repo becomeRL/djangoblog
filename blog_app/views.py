@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from .models import Memo, KorTexts, EngTexts, NewsData
+from .models import Memo, KorTexts, EngTexts, NewsData, Photo
 
 # Create your views here.
 
@@ -29,6 +29,7 @@ def new_memo(req):
             title=req.POST['title'],
             pub_date=timezone.now(),
             body=req.POST['body'],
+            image = req.FILES['imgs']
         )
         return redirect('/memo/')
     return render(req, 'blog_app/new_memo.html')
