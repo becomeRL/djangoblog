@@ -15,12 +15,10 @@ def home(req):
 
 def memo(req):
     memolist = Memo.objects.all()
-
     return render(req, 'blog_app/memo.html', {'memolist':memolist})
 
 def detail_memo(req, pk):
     memo = Memo.objects.get(pk=pk)
-
     return render(req, 'blog_app/detail_memo.html', {'memo':memo})
 
 def new_memo(req):
@@ -36,7 +34,6 @@ def new_memo(req):
             photo.image = img
             photo.save()
         # memo.image = req.FILES.get('image')
-
         return redirect('/memo/')
     return render(req, 'blog_app/new_memo.html')
 
@@ -53,9 +50,12 @@ def update_memo(req, pk):
     if req.method == 'POST':
         memo.title = req.POST['title']
         memo.body = req.POST['body']
-        memo.image = req.FILES.get('image')
         memo.pub_date = timezone.now()
         memo.save()
+        for img in req.FILES.getlist('image'):
+            photo = Photo()
+            photo.memo = memo
+            photo.image = img
+            photo.save()
         return redirect('/memo/')
     return render(req, 'blog_app/update_memo.html', {'Memo':memo})
-
