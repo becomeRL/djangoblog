@@ -24,13 +24,19 @@ def detail_memo(req, pk):
     return render(req, 'blog_app/detail_memo.html', {'memo':memo})
 
 def new_memo(req):
-    if req.method == "POST":
-        new_article = Memo.objects.create(
-            title=req.POST['title'],
-            pub_date=timezone.now(),
-            body=req.POST['body'],
-            image = req.FILES['imgs']
-        )
+    if req.method == 'POST':
+        memo = Memo()
+        memo.title = req.POST['title']
+        memo.body = req.POST['body']
+        memo.pub_date = timezone.now()
+        memo.save()
+        for img in req.FILES.getlist('image'):
+            photo = Photo()
+            photo.memo = memo
+            photo.image = img
+            photo.save()
+        # memo.image = req.FILES.get('image')
+
         return redirect('/memo/')
     return render(req, 'blog_app/new_memo.html')
 
@@ -40,3 +46,16 @@ def remove_memo(req, pk):
         memo.delete()
         return redirect('/memo/')
     return render(req, 'blog_app/remove_memo.html', {'Memo':memo})
+
+def update_memo(req, pk):
+    memo = Memo.objects.get(pk=pk)
+
+    if req.method == 'POST':
+        memo.title = req.POST['title']
+        memo.body = req.POST['body']
+        memo.image = req.FILES.get('image')
+        memo.pub_date = timezone.now()
+        memo.save()
+        return redirect('/memo/')
+    return render(req, 'blog_app/update_memo.html', {'Memo':memo})
+

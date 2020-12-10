@@ -8,10 +8,11 @@
     <p>{{ memo.title }}</p>
     <p>{{ memo.body }}</p>
     <p>{{ memo.pub_date }}</p>
-    {% if memo.image %}
-        <img src="{{ memo.image.url }}" width="500" height="500">
-    {% endif %}
+        {% for photo in memo.photo_set.all %}
+            <img src="{{photo.image.url}}" width="100"><br>
+        {% endfor %}
     <a href="/memo/">목록</a>
     <a href="/memo/{{ memo.pk }}/remove_memo/">삭제</a>
+    <a href="/memo/{{ memo.pk }}/update_memo/">수정</a>
 
 {% endblock %}

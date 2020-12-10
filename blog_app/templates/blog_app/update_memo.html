@@ -1,0 +1,16 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}
+    Memo-Update
+{% endblock %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}    
+        제목<br>
+        <input type="text" name="title"><br>
+        내용<br>
+        <textarea rows="10" cols="50" name="body"></textarea><br>
+        사진<br>
+        <input type="file" name="image" multiple>
+        <input type="submit" value="수정하기">
+    </form>
+{% endblock %}
