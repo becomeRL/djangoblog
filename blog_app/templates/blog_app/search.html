@@ -1,0 +1,19 @@
+{% extends 'blog_app/base.html' %}
+{% block title %}
+    Blog-Search
+{% endblock %}
+    
+{% block content %}
+
+    {% if not memos %}
+        <h1>Nothing</h1>
+    {% else %}
+
+        {% for memo in memos.all %}
+            <h1>{{ memo.title }}</h1>
+            <p>{{ memo.pub_date }}</p>
+            <a href="{% url 'detail_memo' memo.pk %}">자세히 보기</a>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

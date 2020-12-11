@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.min.css' %}"/>
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>  
@@ -13,11 +12,16 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="{% url 'home' %}">Home</a>
         <a href="{% url 'memo' %}">Memo</a>
-        <a href="#">test</a>
+        <a href="{% url 'test' %}">test</a>
         <a href="#">Contact</a>
     </div>
     <div id="main">
-        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; memu</span>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; menu</span>
+        <form class="" action="{% url 'search' %}" method="POST">
+            {% csrf_token %}
+                <input type="search" placeholder="search" aria-label="Search" name="q" value="{{q}}">
+                <button type="submit">Search!</button>
+        </form>
         {% block content %}
     
         {% endblock %}

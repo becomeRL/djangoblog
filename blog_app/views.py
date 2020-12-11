@@ -59,3 +59,15 @@ def update_memo(req, pk):
             photo.save()
         return redirect('/memo/')
     return render(req, 'blog_app/update_memo.html', {'Memo':memo})
+
+def test(req):
+    return render(req, 'blog_app/test.html')
+
+def search(req):
+    memos = Memo.objects.all().order_by('-id')
+    q = req.POST.get('q',"")
+    if q:
+        memos = memos.filter(title__icontains=q)
+        return render(req, 'blog_app/search.html', {'memos':memos,'q':q})
+    else:
+        return render(req, 'blog_app/search.html')
