@@ -1,25 +1,53 @@
 {% extends 'blog_app/base.html' %}
+
 {% block title %}
     Blog-Home
 {% endblock %}
 
 {% block content %}
-    <h3> Today's Conversation / 오늘의 회화</h3>
-    <p>Today's Expression</p>
-    {% for list in eng_scrapelist %}
-        <li>{{ list.en_text }}</li>
-    {% endfor %}
-
-    <p>오늘의 표현</p>
-    {% for list in kor_scrapelist %}
-        <li>{{ list.ko_text }}</li>
-    {% endfor %}
-    <p style="color: darkgray;">출처 : 해커스 오늘의 회화</p>
-    <h3> Today's News / 오늘의 뉴스</h3>
-    <p>HeadLine News</p>
-    {% for list in news_scrapelist %}
-    <li>{{ list.title }}</li>
-    <a href="{{ list.link }}">{{ list.link }}</a>
-    {% endfor %}
-    <p style="color: darkgray;">출처 : 네이버 뉴스</p>
+<!-- <div class="row">
+    <div class="contents" id="memo_contents">
+        <div class="card">
+            <h2>{{list.title}}</h2>
+            <h5>{{list.pub_date | date:'Y-m-d'}}</h5>
+            {% for photo in list.photo_set.all %}
+                <img src="{{photo.image.url}}" height="200" width="400"><br>
+            {% endfor %}
+            <p style="max-width: 800px;">{{list.body}}</p>
+            <a href="{{ list.pk }}/">read more</a>
+        </div>
+    </div>
+</div> -->
+    <div class="row">
+        <div class="contents" id="parser_contents">
+            <div class="card">
+                <h2> Today's News / 오늘의 뉴스</h2>
+                <h4>HeadLine News</h4>
+                        
+                {% for list in news_scrapelist %}
+                    <li>{{ list.title }}</li>
+                {% endfor %}
+        
+                {% for l in news_link_scrapelist %}
+                    <li><a href="{{ l.link }}">read more</a></li>    
+                {% endfor %}
+                <p style="color: darkgray; text-align: right;">출처 : 네이버 뉴스</p>
+            </div>
+        </div>
+        <div class="contents" id="parser_contents">
+            <div class="card">
+                <h4>Today's Expression</h4>
+        
+                {% for list in eng_scrapelist %}
+                    <li>{{ list.en_text }}</li>
+                {% endfor %} <br>
+        
+                <h4>오늘의 표현</h4>
+                {% for list in kor_scrapelist %}
+                    <li>{{ list.ko_text }}</li>
+                {% endfor %}
+                <p style="color: darkgray; text-align: right;">출처 : 해커스 오늘의 회화</p>
+            </div>
+        </div> 
+    </div>
 {% endblock %}

@@ -3,14 +3,32 @@
     Memo-Update
 {% endblock %}
 {% block content %}
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}    
-        제목<br>
-        <input type="text" name="title"><br>
-        내용<br>
-        <textarea rows="10" cols="50" name="body"></textarea><br>
-        사진<br>
-        <input type="file" name="image" multiple>
-        <input type="submit" value="수정하기">
-    </form>
+<div class="contents" id="memo_contents">
+    <div class="card">
+        <div class="container">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="title">제목 / Title</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="formTitle" name="title" placeholder="Title">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="subject">내용 / Contents</label>
+                        </div>
+                        <div class="col-75">
+                            <textarea id="subject" name="body" placeholder="Write something.." style="height:400px"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <input type="submit" class="formBtn" value="수정하기 / Edit">
+                        <input type="file" id="file" class="inputfile" name="image" data-multiple-caption="{count} files selected" multiple>
+                        <label for="file">
+                            <span>파일선택 / Choose a file</span>
+                        </label>
+                    </div>
 {% endblock %}

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.utils import timezone
-from .models import Memo, KorTexts, EngTexts, NewsData, Photo
+from .models import Memo, KorTexts, EngTexts, NewsData, NewsLink, Photo
 
 # Create your views here.
 
@@ -11,7 +11,8 @@ def home(req):
     kor_scrapelist = KorTexts.objects.all()
     eng_scrapelist = EngTexts.objects.all()
     news_scrapelist = NewsData.objects.all()
-    return render(req, 'blog_app/home.html', {'kor_scrapelist':kor_scrapelist, 'eng_scrapelist':eng_scrapelist, 'news_scrapelist':news_scrapelist})
+    news_link_scrapelist = NewsLink.objects.all()
+    return render(req, 'blog_app/home.html', {'kor_scrapelist':kor_scrapelist, 'eng_scrapelist':eng_scrapelist, 'news_scrapelist':news_scrapelist, 'news_link_scrapelist':news_link_scrapelist})
 
 def memo(req):
     memolist = Memo.objects.all()
@@ -53,6 +54,7 @@ def update_memo(req, pk):
         memo.pub_date = timezone.now()
         memo.save()
         for img in req.FILES.getlist('image'):
+            
             photo = Photo()
             photo.memo = memo
             photo.image = img

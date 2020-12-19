@@ -1,18 +1,23 @@
-{% extends 'blog_app/base.html' %}
+{% extends "blog_app/base.html" %}
+
 {% block title %}
     Memo-Detail
 {% endblock %}
 
 {% block content %}
-
-    <p>{{ memo.title }}</p>
-    <p>{{ memo.body }}</p>
-    <p>{{ memo.pub_date }}</p>
-        {% for photo in memo.photo_set.all %}
-            <img src="{{photo.image.url}}" width="100"><br>
-        {% endfor %}
-    <a href="/memo/">목록</a>
-    <a href="/memo/{{ memo.pk }}/remove_memo/">삭제</a>
-    <a href="/memo/{{ memo.pk }}/update_memo/">수정</a>
-
+    <div class="row">
+        <div class="contents" id="memo_contents">
+            <div class="card">
+                <h2>{{memo.title}}</h2>
+                <h5>{{memo.pub_date | date:"Y-m-d"}}</h5>
+                {% for photo in memo.photo_set.all %}
+                    <img src="{{photo.image.url}}" height="200" width="400"><br>
+                {% endfor %}
+                <p>{{memo.body}}</p>
+                <button id="backBtn" class="btn" title="back" onclick="location.href='/memo/'"><i class="fas fa-arrow-left"></i></button>
+                <button id="delBtn" class="btn" title="delete" onclick="location.href='/memo/{{ memo.pk }}/remove_memo/'"><i class="far fa-trash-alt"></i></button>
+                <button id="editBtn" class="btn" title="edit" onclick="location.href='/memo/{{ memo.pk }}/update_memo/'"><i class="far fa-edit"></i></button>
+            </div>
+        </div>
+    </div>
 {% endblock %}

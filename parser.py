@@ -2,14 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import os
-
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "blog_project.settings")
-
 import django
-
 django.setup()
-
-from blog_app.models import KorTexts, EngTexts, NewsData
+from blog_app.models import KorTexts, EngTexts, NewsData, NewsLink
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -40,6 +36,7 @@ def parse_conv():
 
 def parse_news():
     NewsData.objects.all().delete()
+    NewsLink.objects.all().delete()
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36'}
     req = requests.get('https://news.naver.com/', headers=headers)
     html = req.text
@@ -74,4 +71,4 @@ if __name__ == "__main__":
     for t in news[0]:
         NewsData(title=t).save()
     for l in news[1]:
-        NewsData(link=l).save()
+        NewsLink(link=l).save()

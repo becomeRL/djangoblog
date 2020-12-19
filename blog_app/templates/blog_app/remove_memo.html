@@ -7,8 +7,11 @@
 
     <form method="POST">
         {% csrf_token %}
-        <h3>{{ Memo.title }} - 삭제하기</h3>
-        <button>삭제</button>
+        <div class="warning">
+            <h3>{{ Memo.title }} - 삭제하기</h3>
+            <p><strong>Warning!</strong> 삭제한 컨텐츠는 복구할 수 없습니다.</p>
+          </div>
+        <button class="warnBtn">삭제</button>
     </form>
 
 {% endblock %}

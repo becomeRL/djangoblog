@@ -21,4 +21,6 @@ class EngTexts(models.Model):
 
 class NewsData(models.Model):
     title = models.CharField(max_length=200)
+    
+class NewsLink(models.Model):
     link = models.URLField()

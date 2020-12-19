@@ -1,0 +1,234 @@
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.topnav {
+  overflow: hidden;
+  margin-bottom: 10px;
+} 
+.topnav input[type=search] {
+  width: 130px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+  background-image: url('../images/searchicon.png');
+  background-position: 7px 7px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+.topnav input[type=search]:focus {
+  width: 80%;
+}
+
+body, html {
+  height: 100%;
+  background-image: url('../images/bg1.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.contents {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+#memo_contents {
+  text-align: center;
+}
+#parser_contents {
+  text-align: left;
+}
+.card {
+  padding: 20px;
+}
+
+.btn {
+  border: none;
+  background-color: white;
+  cursor: pointer;
+  position: fixed;
+  z-index: 99;
+  font-size: 18px;
+  outline: none;
+  padding: 15px;
+  border-radius: 4px;
+}
+#topBtn {
+  bottom: 20px;
+  right: 30px;
+  display: none;
+}
+.btn:hover {
+  background-color: rgb(143, 143, 143);
+}
+#newBtn, #editBtn {
+  bottom: 20px;
+  right: 80px;
+  display: inline-block;
+}
+#delBtn {
+  bottom: 20px;
+  right: 138px;
+  display: inline-block;
+}
+#backBtn {
+  bottom: 20px;
+  right: 190px;
+  display: inline-block;
+}
+
+#formTitle, select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  resize: vertical;
+}
+
+label {
+  padding: 12px 12px 12px 0;
+  display: inline-block;
+}
+
+.formBtn {
+  background-color:white;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+}
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+.col-25 {
+  float: left;
+  width: 25%;
+  margin-top: 6px;
+}
+
+.col-75 {
+  float: left;
+  width: 75%;
+  margin-top: 6px;
+}
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, .formBtn, .inputfile {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.inputfile + label {
+  background-color:white;
+  color: black;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  float: left;
+  margin-right: auto;
+}
+.inputfile:focus + label {
+	outline: -webkit-focus-ring-color auto 5px;
+}
+.warning {
+  background-color: #ffffcc;
+  border-left: 6px solid #ffeb3b;
+}
+.warnBtn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+  color: orange;
+  border-radius: 5px;
+}
+.warnBtn:hover {
+  background: bisque;
+}
+/*--------------------------test----------------------------*/
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey */
+  border-top: 16px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

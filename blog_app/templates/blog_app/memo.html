@@ -1,13 +1,25 @@
-{% extends 'blog_app/base.html' %}
+{% extends "blog_app/base.html" %}
+
 {% block title %}
     Blog-Memo
 {% endblock %}
     
 {% block content %}
-
     {% for list in memolist %}
-        <li><a href="{{ list.pk }}/">{{list.title}}</a></li>
+        <div class="row">
+            <div class="contents" id="memo_contents">
+                <div class="card">
+                    <h2>{{list.title}}</h2>
+                    <h5>{{list.pub_date | date:'Y-m-d'}}</h5>
+                    {% for photo in list.photo_set.all %}
+                        <img src="{{photo.image.url}}" height="200" width="400"><br>
+                    {% endfor %}
+                    <p style="max-width: 800px;">{{list.body}}</p>
+                    <a href="{{ list.pk }}/">read more</a>
+                </div>
+            </div>
+        </div>
     {% endfor %}
-    <a href="{% url 'new_memo' %}">new</a>
+    <button class="btn" id="newBtn" title="creat new one" onclick="location.href='../new_memo/'"><i class="fas fa-pen"></i></button>
     
 {% endblock %}
